@@ -276,16 +276,13 @@ void SelectPuzzleState::render(StateMachine & machine) {
     completed = completed * 4;
     
     PD::drawBitmap(0, 0, Images::Selector_Top);
-    PD::drawBitmap(0, 48, Images::Selector_Bottom);
+    PD::drawBitmap(0, 70, Images::Selector_Bottom);
     
     bool flash = getFrameCountHalf(48);  
-    
+
     for (int8_t x = lowerLimit; x < upperLimit; x++) {
         
         uint8_t xPos = x - lowerLimit;
-        
-        //const uint8_t *puzzle = pgm_read_word_near(&Puzzles::puzzles[(puzzleRange * 25) + x]);
-        
         uint8_t width = puzzleRange + 5;
         uint8_t height = puzzleRange + 5;
         
@@ -294,13 +291,18 @@ void SelectPuzzleState::render(StateMachine & machine) {
         }
         
         if (puzzle.getPuzzlesSolved((puzzleRange * 25) + x)) {
-            PD::drawBitmap(4 + (xPos * Constants::Select_Spacing) + 10 - (width / 2), Constants::Select_Top + 10 - (height / 2), Images::Puzzles[(puzzleRange * 25) + x]);
+            
+            uint8_t scale = Constants::Scale[puzzleRange];
+            uint8_t offset = Constants::Offset[puzzleRange];
+            
+            renderPuzzleImage(4 + (xPos * Constants::Select_Spacing) + 2 + offset, Constants::Select_Top + 2 + offset, Puzzles::puzzles[(puzzleRange * 25) + x], scale);
+
         }
         else {
-            PD::drawBitmap(4 + (xPos * Constants::Select_Spacing), Constants::Select_Top, Images::QuestionMark);
+            PD::drawBitmap(2 + (xPos * Constants::Select_Spacing), Constants::Select_Top - 1, Images::QuestionMark);
         }
         
-        PD::setCursor(4 + (xPos * Constants::Select_Spacing) + 7, Constants::Select_Label);
+        PD::setCursor(10 + (xPos * Constants::Select_Spacing) + 7, Constants::Select_Label);
         if (x + 1 < 10) PD::print("0");
         PD::print(x + 1);
 

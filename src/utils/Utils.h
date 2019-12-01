@@ -72,3 +72,33 @@ static inline void drawDottedRow(uint8_t sx, uint8_t ex, uint8_t y) {
     }
 
 }
+
+
+static void renderPuzzleImage(uint8_t xPos, uint8_t yPos, const uint8_t *puzzleImg, uint8_t scale) {
+
+    uint8_t idx = 0;
+
+    uint8_t width = puzzleImg[idx++];
+    uint8_t height = puzzleImg[idx++];
+    uint8_t height8 = (height % 8 == 0 ? height / 8 : (height / 8) + 1);
+
+    for (uint8_t y = 0; y < height8; y++){
+
+        for (uint8_t x = 0; x < width; x++){
+
+            uint8_t data = puzzleImg[idx++];
+
+            for (uint8_t z = 0; z < 8; z++) {
+
+                uint8_t val = (data & (1 << z));
+
+                if (val > 0)
+                    PD::fillRect(xPos + (x * scale), yPos + (((y * 8) + z) * scale), scale, scale - 1);
+
+            }
+
+        }
+
+    }
+
+}

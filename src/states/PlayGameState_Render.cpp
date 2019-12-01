@@ -188,11 +188,19 @@ void PlayGameState::render(StateMachine & machine) {
             break;
 
           case 2:
+
             uint8_t width = puzzle.getSize();
             uint8_t height = puzzle.getSize();
+
+            uint8_t scale = Constants::Scale[puzzle.getPuzzleIndex() / 25];
+            uint8_t offset = Constants::Offset[puzzle.getPuzzleIndex() / 25];
             
-            PD::drawBitmap(14, 20, Images::Congratulations);
-            PD::drawBitmap(101 - (width / 2), 32 - (height / 2), Images::Puzzles[puzzle.getPuzzleIndex()]);
+            PD::drawBitmap(6, 20, Images::Congratulations);
+            
+            renderPuzzleImage(166, 30, Puzzles::puzzles[puzzle.getPuzzleIndex()], scale);
+
+            
+            // PD::drawBitmap(101 - (width / 2), 32 - (height / 2), Images::Puzzles[puzzle.getPuzzleIndex()]);
             break;
 
        }

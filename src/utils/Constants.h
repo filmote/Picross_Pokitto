@@ -21,10 +21,10 @@ namespace Constants {
 
   constexpr uint16_t PuzzlesSolved = PuzzleRows + (16 * NumberOfNumbers);
 
-  constexpr uint16_t Select_Spacing = 25;
+  constexpr uint16_t Select_Spacing = 41;
   constexpr uint16_t Select_Centre = 55;
   constexpr uint16_t Select_Top = 20;
-  constexpr uint16_t Select_Label = Select_Top + 24;
+  constexpr uint16_t Select_Label = Select_Top + 40;
 
   constexpr uint16_t BButtonDelay = 64;
 

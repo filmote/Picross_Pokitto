@@ -248,6 +248,9 @@ void SelectPuzzleState::populatePuzzle(StateMachine & machine, uint16_t puzzleIn
 // ----------------------------------------------------------------------------
 //  Render the state .. 
 //
+
+const uint8_t offset[] = { 0, 1, 1, 1, 1, 1, 1, 1, 2, 3, 4, 5};
+
 void SelectPuzzleState::render(StateMachine & machine) {
 
     auto & puzzle = machine.getContext().puzzle;
@@ -276,16 +279,13 @@ void SelectPuzzleState::render(StateMachine & machine) {
     completed = completed * 4;
     
     PD::drawBitmap(0, 0, Images::Selector_Top);
-    PD::drawBitmap(0, 48, Images::Selector_Bottom);
+    PD::drawBitmap(0, 70, Images::Selector_Bottom);
     
     bool flash = getFrameCountHalf(48);  
-    
+
     for (int8_t x = lowerLimit; x < upperLimit; x++) {
         
         uint8_t xPos = x - lowerLimit;
-        
-        //const uint8_t *puzzle = pgm_read_word_near(&Puzzles::puzzles[(puzzleRange * 25) + x]);
-        
         uint8_t width = puzzleRange + 5;
         uint8_t height = puzzleRange + 5;
         
@@ -293,14 +293,14 @@ void SelectPuzzleState::render(StateMachine & machine) {
             PD::drawBitmap(4 + (xPos * Constants::Select_Spacing), Constants::Select_Top, Images::Box);
         }
         
-        if (puzzle.getPuzzlesSolved((puzzleRange * 25) + x)) {
-            PD::drawBitmap(4 + (xPos * Constants::Select_Spacing) + 10 - (width / 2), Constants::Select_Top + 10 - (height / 2), Images::Puzzles[(puzzleRange * 25) + x]);
+        if (!puzzle.getPuzzlesSolved((puzzleRange * 25) + x)) {
+            PD::drawBitmap(4 + (xPos * Constants::Select_Spacing) + 4 + offset[puzzleRange], Constants::Select_Top + 4 + offset[puzzleRange], Images::Puzzles[(puzzleRange * 25) + x]);
         }
         else {
             PD::drawBitmap(4 + (xPos * Constants::Select_Spacing), Constants::Select_Top, Images::QuestionMark);
         }
         
-        PD::setCursor(4 + (xPos * Constants::Select_Spacing) + 7, Constants::Select_Label);
+        PD::setCursor(10 + (xPos * Constants::Select_Spacing) + 7, Constants::Select_Label);
         if (x + 1 < 10) PD::print("0");
         PD::print(x + 1);
 

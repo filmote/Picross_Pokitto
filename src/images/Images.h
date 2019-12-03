@@ -8,19 +8,27 @@ namespace Images {
     #include "Box.h"
     #include "ArrowUp.h"
     #include "ArrowDown.h"
-    #include "Marked.h"
     #include "Congratulations.h"
     #include "LeaveGame.h"
     #include "Cursor.h"
+    #include "Binder_Top.h"
+    #include "Binder_Bottom.h"
+    #include "Pen.h"
+    #include "PiCrossHeading.h"
 
-    #include "ppot/Ppot_ButtonDown.h"
-    #include "ppot/Ppot_ButtonUp.h"
-    #include "ppot/Ppot_Buttons.h"
-    #include "ppot/Ppot_Caption.h"
-    #include "ppot/Ppot_Loading.h"
-    
+    #include "ppot/Ppot_00.h"
+    #include "ppot/Ppot_01.h"
+    #include "ppot/Ppot_02.h"
+    #include "ppot/Ppot_03.h"
+
     #include "title/TitleScreen_Bottom.h"
     #include "title/TitleScreen_Middle.h"
     #include "title/TitleScreen_Top.h"
+
+    const uint8_t * const Ppot[] = { 
+        
+        Ppot_00, Ppot_01, Ppot_02, Ppot_03,
+        
+    };
 
 }

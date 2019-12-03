@@ -30,25 +30,25 @@ static inline uint16_t getFrameCount() {
 
 }
 
-static inline uint8_t getFrameCount(uint8_t mod) {
+static inline uint16_t getFrameCount(uint16_t mod) {
 
     return (Pokitto::Core::frameCount % mod);
 
 }
 
-static inline bool getFrameCountHalf(uint8_t mod) {
+static inline bool getFrameCountHalf(uint16_t mod) {
 
     return ((Pokitto::Core::frameCount % mod) > (mod /2));
 
 }
 
-static inline bool isFrameCount(uint8_t mod) {
+static inline bool isFrameCount(uint16_t mod) {
 
     return ((Pokitto::Core::frameCount % mod) == 0);
 
 }
 
-static inline bool isFrameCount(uint8_t mod, uint8_t val) {
+static inline bool isFrameCount(uint16_t mod, uint16_t val) {
     
     return ((Pokitto::Core::frameCount % mod) == val);
 

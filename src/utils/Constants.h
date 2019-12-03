@@ -23,7 +23,7 @@ namespace Constants {
     
     constexpr uint16_t Select_Spacing = 41;
     constexpr uint16_t Select_Centre = 55;
-    constexpr uint16_t Select_Top = 20;
+    constexpr uint16_t Select_Top = 50;
     constexpr uint16_t Select_Label = Select_Top + 40;
     
     constexpr uint16_t BButtonDelay = 64;
